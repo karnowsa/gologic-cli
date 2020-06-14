@@ -15,7 +15,7 @@ limitations under the License.
 */
 package main
 
-import "github.com/karnowsa/gologic-cli/cmd"
+import "github.com/karnowsa/gologictl/cmd"
 
 func main() {
 	cmd.Execute()
