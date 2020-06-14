@@ -24,13 +24,13 @@ import (
 // statusCmd represents the status command
 var statusCmd = &cobra.Command{
 	Use:   "status",
-	Short: "Prints the status of the Weblogic Servers",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
+	Short: "Print the status of every or of a specific Server",
+	Long: `The Weblogic REST API gives the opportunity to check the status of the diffrent type of server (AdminServer, ManagedServer, NodeManager)
 
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+With gologictl you can check the status, with the command 
+"gologictl status" or if you want to check the status of 
+a specific Managed Server you can pass a list of ManagedServers.
+For example "gologictl status managed1 managedserver2..."`,
 	Run: func(cmd *cobra.Command, args []string) {
 		var admin gologic.AdminServer = gologic.Init(viper.GetString("ip"), viper.GetInt("port"), viper.GetString("username"), viper.GetString("password"))
 		admin.PrintStatus(args)
