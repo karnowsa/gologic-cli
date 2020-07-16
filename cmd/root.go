@@ -28,7 +28,7 @@ var cfgFile string
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "gologic",
+	Use:   "gologictl",
 	Short: "Gologic is a CLI for the Oracle Weblogic Server",
 	Long: `The Oracle Weblogic has a RESTful Management Interface to do a lot of administration tasks.
 
