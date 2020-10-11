@@ -44,7 +44,7 @@ func init() {
 
 	deployCmd.AddCommand(appCmd)
 
-	appCmd.Flags().StringSliceVarP(&target, "target", "t", []string{}, "")
+	appCmd.Flags().StringSliceVarP(&target, "target", "t", []string{}, "Pass a list of targets (required)")
 	appCmd.MarkFlagRequired("target")
 
 	// Here you will define your flags and configuration settings.
