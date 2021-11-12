@@ -32,7 +32,7 @@ With gologictl you can check the status, with the command
 a specific Managed Server you can pass a list of ManagedServers.
 For example "gologictl status managed1 managedserver2..."`,
 	Run: func(cmd *cobra.Command, args []string) {
-		var admin gologic.AdminServer = gologic.Init(viper.GetString("ip"), viper.GetInt("port"), viper.GetString("username"), viper.GetString("password"))
+		var admin gologic.AdminServer = gologic.LoginAdminServer(viper.GetString("ip"), viper.GetInt("port"), viper.GetString("username"), viper.GetString("password"))
 		admin.PrintStatus(args)
 	},
 }

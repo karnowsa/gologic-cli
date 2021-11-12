@@ -34,7 +34,7 @@ to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		switch argCount := len(args); argCount {
 		case 0:
-			var admin gologic.AdminServer = gologic.Init(viper.GetString("ip"), viper.GetInt("port"), viper.GetString("username"), viper.GetString("password"))
+			var admin gologic.AdminServer = gologic.LoginAdminServer(viper.GetString("ip"), viper.GetInt("port"), viper.GetString("username"), viper.GetString("password"))
 			admin.PrintDeployments()
 		default:
 			cmd.Help()

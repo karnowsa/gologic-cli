@@ -34,7 +34,7 @@ This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		target, _ := cmd.Flags().GetStringSlice("target")
-		var admin gologic.AdminServer = gologic.Init(viper.GetString("ip"), viper.GetInt("port"), viper.GetString("username"), viper.GetString("password"))
+		var admin gologic.AdminServer = gologic.LoginAdminServer(viper.GetString("ip"), viper.GetInt("port"), viper.GetString("username"), viper.GetString("password"))
 		admin.Deploy(target, args)
 	},
 }
