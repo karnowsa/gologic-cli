@@ -16,6 +16,8 @@ limitations under the License.
 package cmd
 
 import (
+	b64 "encoding/base64"
+
 	"github.com/karnowsa/gologic"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -34,7 +36,12 @@ This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		target, _ := cmd.Flags().GetStringSlice("target")
-		var admin gologic.AdminServer = gologic.LoginAdminServer(viper.GetString("ip"), viper.GetInt("port"), viper.GetString("username"), viper.GetString("password"))
+		passwordBase64Decode, _ := b64.StdEncoding.DecodeString(viper.GetString("password"))
+		var admin gologic.AdminServer = gologic.LoginAdminServer(
+			viper.GetString("ip"),
+			viper.GetInt("port"),
+			viper.GetString("username"),
+			string(passwordBase64Decode))
 		admin.Deploy(target, args)
 	},
 }

@@ -105,6 +105,8 @@ github.com/jtolds/gls v4.20.0+incompatible/go.mod h1:QJZ7F/aHp+rZTRtaJ1ow/lLfFfV
 github.com/julienschmidt/httprouter v1.2.0/go.mod h1:SYymIcj16QtmaHHD7aYtjjsJG7VTCxuUUipMqKk8s4w=
 github.com/karnowsa/gologic v1.0.4 h1:uB+jNH6HdZ/zCZaN6D0rRbgySHc+mlH5aGehPJN8QSw=
 github.com/karnowsa/gologic v1.0.4/go.mod h1:IB3K6x+EcrYH0959XmiFNyATSuNm9B+zjd9elfAzYh0=
+github.com/karnowsa/gologic v1.0.5 h1:gt/y1/VaraM4zW8CPR6UrAOBc8OhCoVrAfaqkK2kMgk=
+github.com/karnowsa/gologic v1.0.5/go.mod h1:IB3K6x+EcrYH0959XmiFNyATSuNm9B+zjd9elfAzYh0=
 github.com/kisielk/errcheck v1.1.0/go.mod h1:EZBBE59ingxPouuu3KfxchcWSUPOHkagtvWXihfKN4Q=
 github.com/kisielk/gotool v1.0.0/go.mod h1:XhKaO+MFFWcvkIS/tQcRk01m1F5IRFswLeQ+oQHNcck=
 github.com/konsorten/go-windows-terminal-sequences v1.0.1/go.mod h1:T0+1ngSBFLxvqU3pZ+m/2kptfBszLMUkC4ZK/EgS/cQ=

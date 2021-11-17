@@ -16,26 +16,39 @@ limitations under the License.
 package cmd
 
 import (
+	b64 "encoding/base64"
+
 	"github.com/karnowsa/gologic"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
 
 // stopCmd represents the stop command
-var stopCmd = &cobra.Command{
-	Use:   "stop",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
+var (
+	// Used for flags.
+	force string
+
+	stopCmd = &cobra.Command{
+		Use:   "stop",
+		Short: "Stop Weblogic Managed Server",
+		Long: `A longer description that spans multiple lines and likely contains examples
 and usage of using your command. For example:
 
 Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
-	Run: func(cmd *cobra.Command, args []string) {
-		var admin gologic.AdminServer = gologic.LoginAdminServer(viper.GetString("ip"), viper.GetInt("port"), viper.GetString("username"), viper.GetString("password"))
-		admin.Stop(args, false)
-	},
-}
+		Run: func(cmd *cobra.Command, args []string) {
+			force, _ := cmd.Flags().GetBool("force")
+			passwordBase64Decode, _ := b64.StdEncoding.DecodeString(viper.GetString("password"))
+			var admin gologic.AdminServer = gologic.LoginAdminServer(
+				viper.GetString("ip"),
+				viper.GetInt("port"),
+				viper.GetString("username"),
+				string(passwordBase64Decode))
+			admin.Stop(args, force)
+		},
+	}
+)
 
 func init() {
 	rootCmd.AddCommand(stopCmd)
@@ -48,5 +61,5 @@ func init() {
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	// stopCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	stopCmd.Flags().BoolP("force", "f", false, "Force Stop Weblogic Servers")
 }

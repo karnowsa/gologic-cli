@@ -16,6 +16,8 @@ limitations under the License.
 package cmd
 
 import (
+	b64 "encoding/base64"
+
 	"github.com/karnowsa/gologic"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -24,15 +26,14 @@ import (
 // startCmd represents the start command
 var startCmd = &cobra.Command{
 	Use:   "start",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "Start Weblogic Managed Server",
 	Run: func(cmd *cobra.Command, args []string) {
-		var admin gologic.AdminServer = gologic.LoginAdminServer(viper.GetString("ip"), viper.GetInt("port"), viper.GetString("username"), viper.GetString("password"))
+		passwordBase64Decode, _ := b64.StdEncoding.DecodeString(viper.GetString("password"))
+		var admin gologic.AdminServer = gologic.LoginAdminServer(
+			viper.GetString("ip"),
+			viper.GetInt("port"),
+			viper.GetString("username"),
+			string(passwordBase64Decode))
 		admin.Start(args)
 	},
 }

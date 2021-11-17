@@ -16,6 +16,8 @@ limitations under the License.
 package cmd
 
 import (
+	b64 "encoding/base64"
+
 	"github.com/karnowsa/gologic"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -32,7 +34,12 @@ With gologictl you can check the status, with the command
 a specific Managed Server you can pass a list of ManagedServers.
 For example "gologictl status managed1 managedserver2..."`,
 	Run: func(cmd *cobra.Command, args []string) {
-		var admin gologic.AdminServer = gologic.LoginAdminServer(viper.GetString("ip"), viper.GetInt("port"), viper.GetString("username"), viper.GetString("password"))
+		passwordBase64Decode, _ := b64.StdEncoding.DecodeString(viper.GetString("password"))
+		var admin gologic.AdminServer = gologic.LoginAdminServer(
+			viper.GetString("ip"),
+			viper.GetInt("port"),
+			viper.GetString("username"),
+			string(passwordBase64Decode))
 		admin.PrintStatus(args)
 	},
 }

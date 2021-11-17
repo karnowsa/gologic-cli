@@ -22,13 +22,14 @@ import (
 // deployCmd represents the deploy command
 var deployCmd = &cobra.Command{
 	Use:   "deploy",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
+	Short: "Manage Weblogic Deployments",
+	Long: `The deploy subcommand gives the oppurtunity to manage the Weblogic Deyployments.
+With the app command you can pass a path to a deployment and which target should be deployed. The second command is the "list" command, which simply prints the current deployment list.
 
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	For example:
+	gologictl deploy app /usr/src/hello.war -t cluster1
+	gologictl deploy list
+	`,
 	Run: func(cmd *cobra.Command, args []string) {
 		cmd.Help()
 	},
